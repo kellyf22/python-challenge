@@ -44,13 +44,26 @@ with open(csvpath) as csvfile:
             candidates[name] = 1
 
 print("Election Results")
-print("------------------")
+print("-----------------------")
 print(f'Total votes: {num_votes}''')
-print("------------------")
+print("-----------------------")
 for name, number in candidates.items():
     print(f'{name}: {round(100*number/num_votes,3)}% ({number})''')
-print("------------------")
+print("-----------------------")
 max_votes = max(candidates.values())
 winner = [name for name, number in candidates.items() if number == max_votes]
 print(f'Winner: {winner[0]}''')
-print("------------------")
+print("-----------------------")
+
+# Write the same results to a text file called "results.txt" and put it in the PyBank folder.
+# The text file will be created if it doesn't already exist. If it does exist, it will be overwritten.
+text_report = open("results.txt","w+")
+text_report.write("Election Results\r")
+text_report.write("-----------------------\r")
+text_report.write("Total Votes: " + str(num_votes) +"\r")
+text_report.write("-----------------------\r")
+for name, number in candidates.items():
+    text_report.write(f'{name}: {round(100*number/num_votes,3)}% ({number})''\r')
+text_report.write("-----------------------\r")
+text_report.write("Winner: "+ winner[0] +"\r")
+text_report.write("-----------------------")

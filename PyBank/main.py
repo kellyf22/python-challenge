@@ -28,6 +28,7 @@ with open(csvpath) as csvfile:
     months = []
     money = []
     changes = []
+    
     #HW requirement #2: find net total of profits and losses over the entire period
     net = 0
     for _ in range(num_months):
@@ -66,6 +67,7 @@ with open(csvpath) as csvfile:
             #print(row)
             low = row
 
+#print the results in terminal
 print("Financial Analysis")
 print("------------------")
 print(f'Total Months: {num_months}''')
@@ -73,3 +75,14 @@ print(f'Total: ${net}''')
 print(f'Average Change: ${avg_change}''')
 print(f'Greatest Increase in Profits: {high[0]} ${high[1]}''')
 print(f'Greatest Decrease in Profits: {low[0]} ${low[1]}''')
+
+# Write the same results to a text file called "results.txt" and put it in the PyBank folder.
+# The text file will be created if it doesn't already exist. If it does exist, it will be overwritten.
+text_report = open("results.txt","w+")
+text_report.write("Financial Analysis\r")
+text_report.write("------------------\r")
+text_report.write("Total Months: " + str(num_months) +"\r")
+text_report.write("Total: $" + str(net) + "\r")
+text_report.write("Average Change: $" + str(avg_change) + "\r")
+text_report.write("Greatest Increase in Profits: " + str(high[0]) + " $" + str(high[1]) + "\r")
+text_report.write("Greatest Decrease in Profits: " + str(low[0]) + " $" + str(low[1]) + "\r")
